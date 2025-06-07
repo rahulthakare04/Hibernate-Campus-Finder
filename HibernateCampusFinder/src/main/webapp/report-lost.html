@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Report Lost Item - Campus Finder</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tagline {
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    color: #4a5568;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.form-group:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.form-group:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 1rem;
+}
+
+.required {
+    color: #e53e3e;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+    appearance: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.form-icon {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">🔍 Campus Finder</div>
+    <div class="tagline">Lost & Found Platform</div>
+</div>
+
+<div class="container">
+    <h1>📝 Report Lost Item</h1>
+    <p class="subtitle">Help us help you find your lost item by providing detailed information</p>
+    
+    <form action="AddNewLostItem" method="POST">
+        <div class="form-group">
+            <label for="title">
+                <span class="form-icon">📱</span>
+                Item Title <span class="required">*</span>
+            </label>
+            <input type="text" id="title" name="title" required maxlength="100" 
+                   placeholder="e.g., iPhone 12 Pro, Black Wallet, etc." />
+            <div class="help-text">Be specific about the item (brand, model, color)</div>
+        </div>
+
+        <div class="form-group">
+            <label for="studentName">
+                <span class="form-icon">👤</span>
+                Your Name <span class="required">*</span>
+            </label>
+            <input type="text" id="studentName" name="student_name" required maxlength="100" 
+                   placeholder="Enter your full name" />
+        </div>
+
+        <div class="form-group">
+            <label for="contact">
+                <span class="form-icon">📞</span>
+                Contact Info
+            </label>
+            <input type="text" id="contact" name="contact" maxlength="100" 
+                   placeholder="Phone number or email address" />
+            <div class="help-text">How can we reach you when your item is found?</div>
+        </div>
+
+        <div class="form-group">
+            <label for="location">
+                <span class="form-icon">📍</span>
+                Location Lost <span class="required">*</span>
+            </label>
+            <select id="location" name="location" required>
+                <option value="">Select Location</option>
+                <option value="Library">Library</option>
+                <option value="Cafeteria">Cafeteria</option>
+                <option value="Main Building">Main Building</option>
+                <option value="Computer Lab">Computer Lab</option>
+                <option value="Hostel Area">Hostel Area</option>
+                <option value="Sports Complex">Sports Complex</option>
+                <option value="Parking Area">Parking Area</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="Garden/Campus Grounds">Garden/Campus Grounds</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lostDate">
+                <span class="form-icon">📅</span>
+                Date Lost
+            </label>
+            <input type="date" id="lostDate" name="lost_date" />
+            <div class="help-text">When did you last see your item?</div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">
+                <span class="form-icon">📝</span>
+                Detailed Description
+            </label>
+            <textarea id="description" name="description" rows="5" cols="40" 
+                      placeholder="Provide additional details that would help identify your item (unique features, scratches, accessories, etc.)"></textarea>
+            <div class="help-text">Include any unique features, damage, or distinguishing marks</div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            ✅ Submit Lost Item Report
+        </button>
+    </form>
+
+    <div class="navigation">
+        <div class="nav-links">
+            <a href="index.jsp" class="nav-link">🏠 Home</a>
+            <a href="found-items.jsp" class="nav-link">👀 View Found Items</a>
+            <a href="report-found.html" class="nav-link">✅ Report Found Item</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

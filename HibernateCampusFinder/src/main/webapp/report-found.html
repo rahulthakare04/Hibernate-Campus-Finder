@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Report Found Item - Campus Finder</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo h1 {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.logo p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.page-title {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-title h2 {
+    color: #333;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.found-icon {
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #e74c3c;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23667eea' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #2ed573, #17a2b8);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(46, 213, 115, 0.3);
+    background: linear-gradient(135deg, #17a2b8, #2ed573);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.info-box {
+    background: rgba(23, 162, 184, 0.1);
+    border: 1px solid rgba(23, 162, 184, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.info-box p {
+    color: #155a6b;
+    font-size: 0.9rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.nav-links a.home {
+    background: linear-gradient(135deg, #2ed573, #1e90ff);
+    color: white;
+}
+
+.nav-links a.view {
+    background: linear-gradient(135deg, #5352ed, #3742fa);
+    color: white;
+}
+
+.nav-links a.report-lost {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+}
+
+.nav-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .form-container {
+        padding: 25px 20px;
+    }
+    
+    .logo h1 {
+        font-size: 1.7rem;
+    }
+    
+    .page-title h2 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-links a {
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .logo {
+        padding: 15px;
+    }
+    
+    .page-title {
+        padding: 20px;
+    }
+    
+    .form-container {
+        padding: 20px 15px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    select,
+    .submit-btn {
+        padding: 12px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <h1>🔍 Campus Finder</h1>
+                <p>Lost & Found Platform</p>
+            </div>
+            
+            <div class="page-title">
+                <h2>
+                    <span class="found-icon">✅</span>
+                    Report Found Item
+                </h2>
+                <p class="subtitle">Help reunite lost items with their owners</p>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="info-box">
+                <p>
+                    <span>💡</span>
+                    Please provide accurate details to help the owner identify their item. Fields marked with * are required.
+                </p>
+            </div>
+
+            <form action="AddNewFoundItem" method="POST">
+                <div class="form-group">
+                    <label for="title">Item Title <span class="required">*</span></label>
+                    <input type="text" id="title" name="title" required maxlength="100" placeholder="e.g., Black iPhone, Blue Backpack, Chemistry Textbook" />
+                </div>
+
+                <div class="form-group">
+                    <label for="finderName">Your Name <span class="required">*</span></label>
+                    <input type="text" id="finderName" name="finder_name" required maxlength="100" placeholder="Enter your full name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact Info</label>
+                    <input type="text" id="contact" name="contact" maxlength="100" placeholder="Phone number or email (optional)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location Found <span class="required">*</span></label>
+                    <select id="location" name="location" required>
+                        <option value="">Select Location</option>
+                        <option value="Library">📚 Library</option>
+                        <option value="Cafeteria">🍽️ Cafeteria</option>
+                        <option value="Main Building">🏢 Main Building</option>
+                        <option value="Computer Lab">💻 Computer Lab</option>
+                        <option value="Hostel Area">🏠 Hostel Area</option>
+                        <option value="Sports Complex">⚽ Sports Complex</option>
+                        <option value="Parking Area">🚗 Parking Area</option>
+                        <option value="Auditorium">🎭 Auditorium</option>
+                        <option value="Garden/Campus Grounds">🌳 Garden/Campus Grounds</option>
+                        <option value="Other">📍 Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="foundDate">Date Found</label>
+                    <input type="date" id="foundDate" name="found_date" />
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>📝</span>
+                    Submit Found Item Report
+                </button>
+            </form>
+
+            <div class="nav-links">
+                <a href="index.jsp" class="home">🏠 Home</a>
+                <a href="found-items.jsp" class="view">👀 View Found Items</a>
+                <a href="report-lost.html" class="report-lost">📋 Report Lost Item</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

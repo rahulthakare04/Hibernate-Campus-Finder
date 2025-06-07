@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Report Found Item</title>
+</head>
+<body>
+    <h1>Report Found Item</h1>
+    <form action="AddNewFoundItem" method="POST">
+        <label for="title">Item Title *</label><br />
+        <input type="text" id="title" name="title" required maxlength="100" /><br /><br />
+
+        <label for="finderName">Your Name *</label><br />
+        <input type="text" id="finderName" name="finder_name" required maxlength="100" /><br /><br />
+
+        <label for="contact">Contact Info</label><br />
+        <input type="text" id="contact" name="contact" maxlength="100" /><br /><br />
+
+        <label for="location">Location Found *</label><br />
+        <select id="location" name="location" required>
+            <option value="">Select Location</option>
+            <option value="Library">Library</option>
+            <option value="Cafeteria">Cafeteria</option>
+            <option value="Main Building">Main Building</option>
+            <option value="Computer Lab">Computer Lab</option>
+            <option value="Hostel Area">Hostel Area</option>
+            <option value="Sports Complex">Sports Complex</option>
+            <option value="Parking Area">Parking Area</option>
+            <option value="Auditorium">Auditorium</option>
+            <option value="Garden/Campus Grounds">Garden/Campus Grounds</option>
+            <option value="Other">Other</option>
+        </select><br /><br />
+
+        <label for="foundDate">Date Found</label><br />
+        <input type="date" id="foundDate" name="found_date" /><br /><br />
+
+        <button type="submit">Submit Found Item Report</button>
+    </form>
+</body>
+</html>
