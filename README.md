@@ -1,3 +1,5 @@
+
+
 # Hibernate Campus Finder 🛝
 
 A Java-based web application built using **Hibernate**, **Servlets**, **JSP**, and **MySQL** that helps students report and find **lost or found items** on their campus.
@@ -111,11 +113,10 @@ Users can search items based on locations like:
 
 Watch a quick demo of how the Hibernate Campus Finder works — from reporting lost/found items to viewing and searching them.
 
-▶️ [Watch the Video Demo](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK)
 
 > 🎥 This video showcases the main features, UI, and flow of the application in real time.
 
-*(Replace `YOUR_VIDEO_LINK` with your actual YouTube or Google Drive link)*
+https://github.com/user-attachments/assets/3a2c8957-54ce-4780-a3b3-a48f855cf4ee
 
 
 ## 📁 Folder Structure
