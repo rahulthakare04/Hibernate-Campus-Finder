@@ -107,6 +107,16 @@ Users can search items based on locations like:
 ```
 
 ---
+## 📽️ Video Execution
+
+Watch a quick demo of how the Hibernate Campus Finder works — from reporting lost/found items to viewing and searching them.
+
+▶️ [Watch the Video Demo](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK)
+
+> 🎥 This video showcases the main features, UI, and flow of the application in real time.
+
+*(Replace `YOUR_VIDEO_LINK` with your actual YouTube or Google Drive link)*
+
 
 ## 📁 Folder Structure
 
